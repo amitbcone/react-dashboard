@@ -49,7 +49,7 @@ class Buttn extends React.Component{
     console.log('params');
     if(params ==="switch1"){
       try{
-        await  axios.get('http://192.168.1.31/switch1On').then((resp)=>{console.log('resp data-->'+resp.data);
+         axios.get('http://192.168.1.31/switch1On').then((resp)=>{console.log('resp data-->'+resp.data);
     console.log(resp.data);
       if(resp.data!=='Hello')
     this.togglButton(); }).catch( (err) =>{console.log("err.response.status")});
