@@ -10,8 +10,6 @@ import AppComponent from './components/App';
 import './styles/app.scss';
 
 
-import NotificationSounds, { playSampleSound } from 'react-native-notification-sounds';
-
 
 class App extends React.Component {
   render() {
