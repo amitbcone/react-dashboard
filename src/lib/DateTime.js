@@ -14,10 +14,17 @@ export default class DateTime {
             'Sunday', 'Monday', 'Tuesday', 'Wednesday',
             'Thursday', 'Friday', 'Saturday'
         ];
+        this.AMPMformat =this.AMPMformat.bind(this);
     }
 
+    AMPMformat(){
+        let time= this.date.getHours();
+        if(this.date.getHours()>12)
+        time=time%12;
+        return time;
+    }
     hours() {
-        return this.formatUnitOfTime(this.date.getHours());
+        return this.formatUnitOfTime(this.AMPMformat());
     }
 
     minutes() {

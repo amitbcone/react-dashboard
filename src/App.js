@@ -10,6 +10,9 @@ import AppComponent from './components/App';
 import './styles/app.scss';
 
 
+import NotificationSounds, { playSampleSound } from 'react-native-notification-sounds';
+
+
 class App extends React.Component {
   render() {
     // layout is an array of objects, see the demo for more complete usage
@@ -20,20 +23,53 @@ class App extends React.Component {
 }
 
 class Buttn extends React.Component{
-
+  
   constructor(props){
     super(props);
     this.state ={
       data:"testing",
-      button:"primary"
+      button:"primary",
+      switch1:"primary",
+      switch2:"primary",
+      switch3:"primary"
     }
     this.onclk = this.onclk.bind(this);
     this.popuButtons =this.popuButtons.bind(this);
+    this.togglButton = this.togglButton.bind(this);
   };
+  togglButton(){
+    this.setState({switch1:"primary"});
+  //   NotificationSounds.getNotifications().then(soundsList => {
+  //     console.warn('SOUNDS', JSON.stringify(soundsList ));
+      
+  //     playSampleSound(soundsList[1]); 
+  // });
+  }
   onclk(params) {
-    console.log('aaaaaaa');
-    axios.get('');
-    this.state.button === "Disabled" ? this.setState({button:"primary"}) : this.setState({button:"Disabled"});
+    console.log('params');
+    if(params ==="switch1"){
+      try{
+        await  axios.get('http://192.168.1.31/switch1On').then((resp)=>{console.log('resp data-->'+resp.data);
+    console.log(resp.data);
+      if(resp.data!=='Hello')
+    this.togglButton(); }).catch( (err) =>{console.log("err.response.status")});
+      this.setState({switch1:"Disabled"});
+      }catch(errr){
+        console.log('errrroooorr');
+        console.log(errr);
+      }
+      setTimeout(function(){
+ 
+        axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
+        this.togglButton();
+        
+      }.bind(this), 3000);//15*60000
+      
+
+    }else{
+      axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
+    }
+    //this.state.button === "Disabled" ? this.setState({button:"primary"}) : this.setState({button:"Disabled"});
   }
   popuButtons(){
 
@@ -59,7 +95,7 @@ class Buttn extends React.Component{
       <table>
           <tr>
             {/* {this.popuButtons()} */}
-            <td><AwesomeButton type={this.state.button} ripple onPress={() => this.onclk('Button1')}>Button1</AwesomeButton></td>
+            <td><AwesomeButton  type={this.state.switch1} ripple onPress={() => this.onclk('switch1')}>Button1</AwesomeButton></td>
             <td><AwesomeButton  type="primary" ripple>Button2</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button3</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button4</AwesomeButton></td>

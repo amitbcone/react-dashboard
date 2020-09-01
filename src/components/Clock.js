@@ -13,7 +13,7 @@ class Clock extends Component {
         };
         
         this.toggleDate = this.toggleDate.bind(this);
-    }
+        }
 
     componentDidMount() {
         this.startTime();
@@ -22,7 +22,7 @@ class Clock extends Component {
     componentWillUnmount() {
         clearInterval(this.timer);
     }
-
+    
     startTime() {        
         this.timer = setInterval(() => {
             this.setState(() => ({ date: new Date()}));
