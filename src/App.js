@@ -94,7 +94,7 @@ class Buttn extends React.Component{
           <tr>
             {/* {this.popuButtons()} */}
             <td><AwesomeButton  type={this.state.switch1} ripple onPress={() => this.onclk('switch1')}>Button1</AwesomeButton></td>
-            <td><AwesomeButton  type="primary" ripple  onPress={() => this.onclk('switch1')}>Button2</AwesomeButton></td>
+            <td><AwesomeButton  type="primary" ripple  onPress={() => this.onclk('switch2')}>Button2</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button3</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button4</AwesomeButton></td>
           </tr>
