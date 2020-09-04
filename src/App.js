@@ -10,7 +10,7 @@ import AppComponent from './components/App';
 import './styles/app.scss';
 
 
-
+let timer = null;
 class App extends React.Component {
   render() {
     // layout is an array of objects, see the demo for more complete usage
@@ -56,16 +56,19 @@ class Buttn extends React.Component{
         console.log('errrroooorr');
         console.log(errr);
       }
-      setTimeout(function(){
+      timer = setTimeout(function(){
  
         axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
         this.togglButton();
         
-      }.bind(this), 15*60000);//
+      }.bind(this), 20*60000);//
       
 
     }else{
       axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
+      if(timer!==null)
+      clearTimeout(timer);
+      this.togglButton();
     }
     //this.state.button === "Disabled" ? this.setState({button:"primary"}) : this.setState({button:"Disabled"});
   }
