@@ -47,7 +47,7 @@ class Buttn extends React.Component{
     console.log('params');
     if(params ==="switch1"){
       try{
-         axios.get('http://192.168.1.31/switch1On').then((resp)=>{console.log('resp data-->'+resp.data);
+         axios.get('http://192.168.1.31/switch1On').then((resp)=>{console.log('resp data-->');
     console.log(resp.data);
       if(resp.data!=='Hello')
     this.togglButton(); }).catch( (err) =>{console.log("err.response.status")});
@@ -61,7 +61,7 @@ class Buttn extends React.Component{
         axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
         this.togglButton();
         
-      }.bind(this), 3000);//15*60000
+      }.bind(this), 15*60000);//
       
 
     }else{
@@ -94,7 +94,7 @@ class Buttn extends React.Component{
           <tr>
             {/* {this.popuButtons()} */}
             <td><AwesomeButton  type={this.state.switch1} ripple onPress={() => this.onclk('switch1')}>Button1</AwesomeButton></td>
-            <td><AwesomeButton  type="primary" ripple>Button2</AwesomeButton></td>
+            <td><AwesomeButton  type="primary" ripple  onPress={() => this.onclk('switch1')}>Button2</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button3</AwesomeButton></td>
             <td><AwesomeButton type="primary">Button4</AwesomeButton></td>
           </tr>
