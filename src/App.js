@@ -61,7 +61,7 @@ class Buttn extends React.Component{
         axios.get('http://192.168.1.31/switch1Off').then(resp=>{});
         this.togglButton();
         
-      }.bind(this), 20*60000);//
+      }.bind(this), 20*60*1000);//
       
 
     }else{
